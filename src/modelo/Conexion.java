@@ -1,3 +1,5 @@
+package modelo;
+
 import java.sql.DriverManager;
 import java.sql.*;
 
@@ -37,7 +39,7 @@ public class Conexion {
 	 * @param consulta La consulta SQL en formato de texto.
 	 * @return Un objeto de tipo ResultSet con la respuesta a la consulta.
 	 */
-	public ResultSet Consulta(String consulta) {
+	protected ResultSet consultar(String consulta) {
 		try {
 			Connection cn = DriverManager.getConnection(url, user, pwd);
 			PreparedStatement da = cn.prepareStatement(consulta);
@@ -45,7 +47,7 @@ public class Conexion {
 			return tbl;
 		}
 		catch (SQLException e) {
-			//javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
+			javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
 			return null;
 		}
 	}
@@ -58,17 +60,17 @@ public class Conexion {
 	 * <p>
 	 * En caso de una excepción en la base de datos, muestra su mensaje en un panel JOptionPane
 	 *
-	 * @param consulta La declaración DML del lenguaje SQL en formato de texto.
+	 * @param manipulacion La declaración DML del lenguaje SQL en formato de texto.
 	 * @return Un entero con el número de filas afectadas
 	 */
-	public int Actualizar(String consulta) {
+	protected int actualizar(String manipulacion) {
 		try {
 			Connection cn = DriverManager.getConnection(url, user, pwd);
-			PreparedStatement da = cn.prepareStatement(consulta);
+			PreparedStatement da = cn.prepareStatement(manipulacion);
 			return da.executeUpdate();
 		}
 		catch (SQLException e) {
-			//javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
+			javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
 			return -1;
 		}
 	}
