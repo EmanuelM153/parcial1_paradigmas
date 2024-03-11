@@ -191,6 +191,10 @@ public class JFramePrincipal extends javax.swing.JFrame
         JTFDestinatario.setText(destinatario);
     }
 
+    public JButton getJBSalir() {
+        return JBSalir;
+    }
+
     private javax.swing.JButton JBEnviar;
     private javax.swing.JButton JBSalir;
     private javax.swing.JLabel JLDestinatario;

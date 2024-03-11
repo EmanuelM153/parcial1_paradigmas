@@ -1,5 +1,5 @@
-CREATE DATABASE NIQUE;
-USE NIQUE
+CREATE DATABASE NIQUE2;
+USE NIQUE2
 
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
@@ -94,8 +94,6 @@ ALTER TABLE `transaccion`
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
-ALTER TABLE `cliente`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `cuenta`

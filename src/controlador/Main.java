@@ -1,6 +1,7 @@
 package controlador;
 
 import modelo.*;
+import vista.Login;
 
 public class Main {
 	public static void main(String[] args) {
@@ -14,9 +15,6 @@ public class Main {
 			conexion.inicializar(args[0], args[1], args[2]);
 		}
 
-		CuentaDao cuentaDao = new CuentaDao();
-		Cuenta cuenta = cuentaDao.buscarObjetos(new Cuenta(3)).get(0);
-
-		new ControllerPrincipal(new Cliente(3), cuenta);
+		new ControladorLogin(new Login());
 	}
 }
