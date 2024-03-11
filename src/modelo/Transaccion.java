@@ -4,17 +4,22 @@ public class Transaccion {
 	private int id;
 	private int idEmisor;
 	private int idDestinatario;
-	private int valor;
+	private double valor;
 
 	public Transaccion() {}
 
-	public Transaccion(int idEmisor, int idDestinatario, int valor) {
+	public Transaccion(int idEmisor, int idDestinatario) {
+		this.idEmisor = idEmisor;
+		this.idDestinatario = idDestinatario;
+	}
+
+	public Transaccion(int idEmisor, int idDestinatario, double valor) {
 		this.idEmisor = idEmisor;
 		this.idDestinatario = idDestinatario;
 		this.valor = valor;
 	}
 
-	public Transaccion(int id, int idEmisor, int idDestinatario, int valor) {
+	public Transaccion(int id, int idEmisor, int idDestinatario, double valor) {
 		this.id = id;
 		this.idEmisor = idEmisor;
 		this.idDestinatario = idDestinatario;
@@ -45,11 +50,11 @@ public class Transaccion {
 		this.idDestinatario = idDestinatario;
 	}
 
-	public int getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(int valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 }
