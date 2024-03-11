@@ -63,7 +63,7 @@ public class TransaccionDAO implements ComunicacionDB <Transaccion> {
 					transaccion.setId(resultados.getInt("id"));
 					transaccion.setIdDestinatario(resultados.getInt("idDestinatario"));
 					transaccion.setIdEmisor(resultados.getInt("idEmisor"));
-					transaccion.setValor(resultados.getInt("valor"));
+					transaccion.setValor(resultados.getDouble("valor"));
 					transacciones.add(transaccion);
 				}
 			} catch (SQLException e) {

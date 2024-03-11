@@ -5,6 +5,10 @@ public class Cliente {
     private String contrasena;
     private String nombre;
 
+    public Cliente(int id) {
+        this.id = id;
+    }
+
     public Cliente(int id, String contrasena, String nombre) {
         this.id = id;
         this.contrasena = contrasena;

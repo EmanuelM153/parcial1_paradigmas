@@ -5,6 +5,10 @@ public class Cuenta {
     private double saldo;
     private int cliente;
 
+    public Cuenta(int cliente) {
+        this.cliente = cliente;
+    }
+
     public Cuenta(int id, double saldo) {
         this.id = id;
         this.saldo = saldo;

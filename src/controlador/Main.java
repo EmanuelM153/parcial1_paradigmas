@@ -1,6 +1,8 @@
-package modelo;
+package controlador;
 
-public class test_main {
+import modelo.*;
+
+public class Main {
 	public static void main(String[] args) {
 		if (args.length > 0) {
 			if (args.length != 3) {
@@ -13,5 +15,8 @@ public class test_main {
 		}
 
 		CuentaDao cuentaDao = new CuentaDao();
+		Cuenta cuenta = cuentaDao.buscarObjetos(new Cuenta(3)).get(0);
+
+		new ControllerPrincipal(new Cliente(3), cuenta);
 	}
 }
