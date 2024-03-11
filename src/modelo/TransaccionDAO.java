@@ -29,20 +29,21 @@ public class TransaccionDAO implements ComunicacionDB <Transaccion> {
 			"' OR valor = '" + busqueda.getValor() + "'";
 		ResultSet coincidencias = conexion.consultar(consulta);
 
-		Transaccion coincidencia;
-		try {
-			while (coincidencias.next()) {
-				coincidencia = new Transaccion();
-				coincidencia.setId(coincidencias.getInt("id"));
-				coincidencia.setIdDestinatario(coincidencias.getInt("idDestinatario"));
-				coincidencia.setIdEmisor(coincidencias.getInt("idEmisor"));
-				coincidencia.setValor(coincidencias.getInt("valor"));
-				resultados.add(coincidencia);
+		if (coincidencias != null) {
+			Transaccion coincidencia;
+			try {
+				while (coincidencias.next()) {
+					coincidencia = new Transaccion();
+					coincidencia.setId(coincidencias.getInt("id"));
+					coincidencia.setIdDestinatario(coincidencias.getInt("idDestinatario"));
+					coincidencia.setIdEmisor(coincidencias.getInt("idEmisor"));
+					coincidencia.setValor(coincidencias.getInt("valor"));
+					resultados.add(coincidencia);
+				}
+			} catch (SQLException e) {
+
 			}
-		} catch (SQLException e){
-
 		}
-
 		return resultados;
 	}
 
@@ -54,20 +55,21 @@ public class TransaccionDAO implements ComunicacionDB <Transaccion> {
 		String consulta = "Select * from transaccion";
 		ResultSet resultados = conexion.consultar(consulta);
 
-		Transaccion transaccion;
-		try {
-			while (resultados.next()) {
-				transaccion = new Transaccion();
-				transaccion.setId(resultados.getInt("id"));
-				transaccion.setIdDestinatario(resultados.getInt("idDestinatario"));
-				transaccion.setIdEmisor(resultados.getInt("idEmisor"));
-				transaccion.setValor(resultados.getInt("valor"));
-				transacciones.add(transaccion);
+		if (resultados != null) {
+			Transaccion transaccion;
+			try {
+				while (resultados.next()) {
+					transaccion = new Transaccion();
+					transaccion.setId(resultados.getInt("id"));
+					transaccion.setIdDestinatario(resultados.getInt("idDestinatario"));
+					transaccion.setIdEmisor(resultados.getInt("idEmisor"));
+					transaccion.setValor(resultados.getInt("valor"));
+					transacciones.add(transaccion);
+				}
+			} catch (SQLException e) {
+
 			}
-		} catch (SQLException e) {
-
 		}
-
 		return transacciones;
 	}
 }
