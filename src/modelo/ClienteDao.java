@@ -9,7 +9,7 @@ public class ClienteDao implements ComunicacionDB<Cliente>{
     @Override
     public int grabarColumna(Cliente objeto) {
             Conexion conexion = Conexion.obtenerInstancia();
-            String manipulacion = "INSERT INTO cliente VALUES(NULL, '"
+            String manipulacion = "INSERT INTO cliente VALUES('" + objeto.getId() + "', '"
                     + objeto.getContrasena() + "', '" + objeto.getNombre() + "')";
             return conexion.actualizar(manipulacion);
     }
@@ -41,6 +41,28 @@ public class ClienteDao implements ComunicacionDB<Cliente>{
         }
 
         return resultados;
+    }
+
+    public Cliente iniciarSesion(int id, String contrasena) {
+        Cliente resultado = null;
+
+        Conexion conexion = Conexion.obtenerInstancia();
+        String consulta = "SELECT * FROM cliente where id = '" + id + "' AND contrasena = '"
+                + contrasena + "';";
+
+        ResultSet coincidencias = conexion.consultar(consulta);
+
+        if (coincidencias != null) {
+            try {
+                coincidencias.next();
+                resultado = new Cliente(coincidencias.getInt("id"), coincidencias.getString("contrasena"),
+                        coincidencias.getString("nombre"));
+            } catch (SQLException e) {
+
+            }
+        }
+
+        return resultado;
     }
 
     @Override

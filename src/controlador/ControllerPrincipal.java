@@ -2,6 +2,7 @@ package controlador;
 
 import modelo.*;
 import vista.JFramePrincipal;
+import vista.Login;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,12 +13,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ControllerPrincipal implements ActionListener {
-	private final Cliente cliente;
 	private final Cuenta cuenta;
 	private final JFramePrincipal miFrame;
+	private final Login login;
 
-	public ControllerPrincipal(Cliente cliente, Cuenta cuenta) {
-		this.cliente = cliente;
+	protected ControllerPrincipal(Cuenta cuenta, JFramePrincipal miFrame, Login login) {
+		this.login = login;
 		this.cuenta = cuenta;
 
 		try {
@@ -32,11 +33,12 @@ public class ControllerPrincipal implements ActionListener {
 			Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		miFrame = new JFramePrincipal();
+		this.miFrame = miFrame;
 		miFrame.setVisible(true);
 
 		// agregar action listeners
 		miFrame.getJBEnviar().addActionListener(this);
+		miFrame.getJBSalir().addActionListener(this);
 
 		// poner el saldo
 		miFrame.setJLSaldo("$ " + cuenta.getSaldo());
@@ -87,7 +89,9 @@ public class ControllerPrincipal implements ActionListener {
 			CuentaDao cuentaDao = new CuentaDao();
 			ArrayList<Cuenta> cuentas = cuentaDao.buscarObjetos(new Cuenta(idDestinatario));
 
-			if (cuentas.isEmpty()) {
+			if (cuentas.isEmpty() || cuentas.get(0).getCliente() == cuenta.getCliente()) {
+				miFrame.setJTFValor("");
+				miFrame.setJTFDestinatario("");
 				JOptionPane.showMessageDialog(null, "Destinatario no existe");
 				return;
 			}
@@ -123,6 +127,11 @@ public class ControllerPrincipal implements ActionListener {
 
 			miFrame.setJTFValor("");
 			miFrame.setJTFDestinatario("");
+		}
+
+		if (actionEvent.getSource() == miFrame.getJBSalir()) {
+			login.setVisible(true);
+			miFrame.dispose();
 		}
 	}
 }
